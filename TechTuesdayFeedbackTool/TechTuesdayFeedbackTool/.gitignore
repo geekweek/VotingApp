@@ -2,6 +2,6 @@
 *.pdb
 Domain/bin/Debug/*.*
 Domain/obj/Debug/*.*
-packages/
+!packages/repositories.config
 Repository/bin/Debug/*.*
 Repository/obj/Debug/*.*
