@@ -1,0 +1,7 @@
+*.dll
+*.pdb
+Domain/bin/Debug/*.*
+Domain/obj/Debug/*.*
+packages/
+Repository/bin/Debug/*.*
+Repository/obj/Debug/*.*
