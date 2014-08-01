@@ -8,6 +8,7 @@ Repository/bin/Debug/*.*
 Repository/obj/Debug/*.*
 TechTuesdayFeedbackTool/bin/
 TechTuesdayFeedbackTool/obj/Debug/
+TechTuesdayFeedbackTool/obj/Debug/*.cache
 *.suo
 *.user
 *.cache
