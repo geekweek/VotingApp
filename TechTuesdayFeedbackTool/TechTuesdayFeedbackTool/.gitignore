@@ -13,3 +13,5 @@ TechTuesdayFeedbackTool/obj/Debug/*.cache
 *.user
 *.cache
 DomainServices/obj/Debug/*.*
+Repository/Migrations/
+!Repository/Migrations/Configuration.cs
