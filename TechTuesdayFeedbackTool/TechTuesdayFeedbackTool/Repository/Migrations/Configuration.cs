@@ -28,8 +28,8 @@ namespace Repository.Migrations
             //    );
             //
             context.UserRolesMasterContext.AddOrUpdate(new UserRolesMaster[] {
-                new UserRolesMaster { RoleName = "User"},
-                new UserRolesMaster { RoleName = "Admin"},
+                new UserRolesMaster { ID = 1, RoleName = "Admin"},
+                new UserRolesMaster { ID = 2, RoleName = "User"},
             });
         }
     }

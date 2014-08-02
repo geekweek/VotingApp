@@ -5,6 +5,10 @@ namespace TechTuesdayFeedbackTool.Repository
 {
     public class DatabaseContext : DbContext
     {
+        public DatabaseContext()
+            :base("DefaultConnection")
+        {
+        }
         public DbSet<User> UsersContext { get; set; }
         public DbSet<UserRolesMaster> UserRolesMasterContext { get; set; }
         public DbSet<PresentationDetails> PresentationDetailsContext { get; set; }
