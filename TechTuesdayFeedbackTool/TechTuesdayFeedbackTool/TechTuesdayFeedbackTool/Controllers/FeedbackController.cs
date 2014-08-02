@@ -9,6 +9,7 @@ using TechTuesdayFeedbackTool.Repository;
 
 namespace TechTuesdayFeedbackTool.Controllers
 {
+    [Authorize]
     public class FeedbackController : Controller
     {
         //

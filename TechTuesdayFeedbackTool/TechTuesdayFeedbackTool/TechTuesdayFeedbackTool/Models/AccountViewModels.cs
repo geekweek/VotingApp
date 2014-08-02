@@ -46,6 +46,11 @@ namespace TechTuesdayFeedbackTool.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "User email")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email")]
+        public string UserEmail { get; set; }
+
+        [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
 

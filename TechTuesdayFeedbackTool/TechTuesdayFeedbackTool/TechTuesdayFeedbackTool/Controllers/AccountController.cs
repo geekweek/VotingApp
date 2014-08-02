@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using TechTuesdayFeedbackTool.Models;
+using TechTuesdayFeedbackTool.Repository;
 
 namespace TechTuesdayFeedbackTool.Controllers
 {
@@ -78,17 +79,13 @@ namespace TechTuesdayFeedbackTool.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    AddErrors(result);
-                }
+                Domain.User user = new Domain.User();
+                user.UserEmail = model.UserEmail;
+                user.UserName = model.UserName;
+                user.RoleID = 1;
+
+                IRepository<Domain.User> repo = new Repository<Domain.User>();
+                repo.Save(user);
             }
 
             // If we got this far, something failed, redisplay form
