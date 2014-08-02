@@ -4,6 +4,7 @@ namespace Repository.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using TechTuesdayFeedbackTool.Domain;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TechTuesdayFeedbackTool.Repository.DatabaseContext>
     {
@@ -26,6 +27,10 @@ namespace Repository.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.UserRolesMasterContext.AddOrUpdate(new UserRolesMaster[] {
+                new UserRolesMaster { RoleName = "User"},
+                new UserRolesMaster { RoleName = "Admin"},
+            });
         }
     }
 }
