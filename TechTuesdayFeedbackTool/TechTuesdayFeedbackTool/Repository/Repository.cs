@@ -1,29 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
 using TechTuesdayFeedbackTool.Domain;
+using System.Data.Entity;
+using System.Linq;
 
-namespace Repository
+namespace TechTuesdayFeedbackTool.Repository
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
+        DatabaseContext context;
+
+        public Repository()
+        {
+            context = new DatabaseContext();
+        }
         public IList<T> Query()
         {
-            throw new NotImplementedException();
+            return context.Set<T>().Select(o => o).ToList();
         }
 
-        public T Get(int ID)
+        public T Get(int id)
         {
-            throw new NotImplementedException();
+            var data = context.Set<T>().Select(o => o.ID == id);
+            return data == null ? default(T) : data as T;
         }
 
         public bool Save(T data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Set<T>().Add(data);
+                var rowsAffected = context.SaveChanges();
+                context.Dispose();
+                return rowsAffected > 0;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            
         }
 
         public bool Update(T data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //var oldvalue = context.Set<T>().Select(o => o.ID == data.ID).FirstOrDefault();
+                //oldvalue = data;
+                //var rowsAffected = context.SaveChanges();
+                //context.Dispose();
+                //return rowsAffected > 0;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
 
         public bool Delete(int ID)

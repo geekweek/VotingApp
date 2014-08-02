@@ -220,6 +220,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Sudheer.cshtml" />
     <Content Include="Views\Feedback\Index.cshtml" />
+    <Content Include="Views\Feedback\UserForm.cshtml" />
+    <Content Include="Views\Feedback\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -238,6 +240,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{8a563375-d502-4d2b-ac59-59da8fd0043c}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{0d571953-3d5b-4808-b0a6-8149f0d95f59}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

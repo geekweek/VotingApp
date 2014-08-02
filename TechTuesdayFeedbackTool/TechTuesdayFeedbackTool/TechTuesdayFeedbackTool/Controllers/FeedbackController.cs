@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TechTuesdayFeedbackTool.Models;
 using TechTuesdayFeedbackTool.Domain;
+using TechTuesdayFeedbackTool.Repository;
 
 namespace TechTuesdayFeedbackTool.Controllers
 {
@@ -15,17 +16,6 @@ namespace TechTuesdayFeedbackTool.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Please provide feedback";
-            //ScoresMaster sm = new ScoresMaster
-            //{
-            //    Score_ID = 1,
-            //    Presentation_ID = 1,
-            //    Score_1 = 5,
-            //    Score_2 = 4,
-            //    Score_3 = 3,
-            //    Score_4 = 2,
-            //    Score_5 = 1,
-            //    Average_Score = 3
-            //};
 
             PresentationDetails presentationDetails = new PresentationDetails
             {
@@ -35,6 +25,25 @@ namespace TechTuesdayFeedbackTool.Controllers
                 Date = DateTime.Now.Date
             };
             return View(presentationDetails);
+        }
+
+        public ActionResult UserForm()
+        {
+            return View(new User());
+        }
+
+        public ActionResult CreateUser(User newUser)
+        {
+            var r = new Repository<User>();
+            r.Save(newUser);
+            //var d = new DatabaseContext();
+
+            //var roles = d.UserRolesMasterContext.Where(r => r.RoleName.Equals("ADMIN", StringComparison.CurrentCultureIgnoreCase)).ToList();
+            //d.UsersContext.Add(newUser);
+            //d.SaveChanges();
+            //d.Dispose();
+
+            return RedirectToAction("Index");
         }
     }
 }

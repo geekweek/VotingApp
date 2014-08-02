@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TechTuesdayFeedbackTool.Domain;
 
-namespace Repository
+namespace TechTuesdayFeedbackTool.Repository
 {
     public interface IRepository<T> where T : Entity
     {

@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TechTuesdayFeedbackTool.Domain
 {
     public class Ratings : Entity
     {
         public int UserID { get; set; }
-        //Presentation
-        public int PresentationID { get; set; }
-        //Scores Master
+        [ForeignKey("UserID")]
+        public User User { get; set; }
+       //Scores Master        
         public int ScoreID { get; set; }
+        [ForeignKey("ScoreID")]
+        public ScoresMaster Score { get; set; }
         //Ratings
         public DateTime VotedOn { get; set; }
     }

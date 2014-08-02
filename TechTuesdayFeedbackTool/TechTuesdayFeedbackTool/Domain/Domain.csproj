@@ -50,7 +50,7 @@
     <Compile Include="Entities\ScoresMaster.cs" />
     <Compile Include="Entities\UserAssociationWithPresentation.cs" />
     <Compile Include="Entities\UserRolesMaster.cs" />
-    <Compile Include="Entities\Users.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

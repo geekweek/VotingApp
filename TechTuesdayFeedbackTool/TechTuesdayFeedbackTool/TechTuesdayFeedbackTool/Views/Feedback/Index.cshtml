@@ -1,4 +1,4 @@
-﻿@model TechTuesdayFeedbackTool.Models.PresentationDetails
+﻿@model TechTuesdayFeedbackTool.Domain.PresentationDetails
 
 @{
     ViewBag.Title = "Index";
@@ -37,6 +37,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Presentation_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index") | 
+    @Html.ActionLink("Create User", "UserForm")
 </p>

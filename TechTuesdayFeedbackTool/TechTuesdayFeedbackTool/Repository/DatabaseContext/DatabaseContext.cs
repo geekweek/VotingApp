@@ -5,7 +5,7 @@ namespace TechTuesdayFeedbackTool.Repository
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Users> UsersContext { get; set; }
+        public DbSet<User> UsersContext { get; set; }
         public DbSet<UserRolesMaster> UserRolesMasterContext { get; set; }
         public DbSet<PresentationDetails> PresentationDetailsContext { get; set; }
         public DbSet<UserAssociationWithPresentation> UserAssociationWithPresentationContext { get; set; }

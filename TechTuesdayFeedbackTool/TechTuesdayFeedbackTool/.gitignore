@@ -12,3 +12,4 @@ TechTuesdayFeedbackTool/obj/Debug/*.cache
 *.suo
 *.user
 *.cache
+DomainServices/obj/Debug/*.*
