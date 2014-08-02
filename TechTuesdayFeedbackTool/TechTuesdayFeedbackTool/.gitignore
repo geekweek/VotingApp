@@ -7,6 +7,7 @@ packages/
 Repository/bin/Debug/*.*
 Repository/obj/Debug/*.*
 TechTuesdayFeedbackTool/bin/
+TechTuesdayFeedbackTool/Migrations/
 TechTuesdayFeedbackTool/obj/Debug/
 TechTuesdayFeedbackTool/obj/Debug/*.cache
 *.suo
