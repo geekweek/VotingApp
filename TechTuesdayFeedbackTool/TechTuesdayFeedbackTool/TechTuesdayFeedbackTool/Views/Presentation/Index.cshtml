@@ -1,0 +1,27 @@
+﻿@model List<TechTuesdayFeedbackTool.Domain.PresentationDetails>
+@{
+    ViewBag.Title = "Presentation List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-offset-4 col-md-3">
+        <div class="alert-success">
+            <span>Presentaion created successfully</span><span class="glyphicon glyphicon-remove right" ></span>
+        </div>
+    </div>
+</div>
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="col-md-4">
+            @Html.Label(Model[i].Name)
+        </div>
+        <div class="col-md-4">
+            @Html.Label(Model[i].Description)
+        </div>
+        <div class="col-md-4">
+            @Html.Label(Model[i].Date.ToShortDateString())
+        </div>
+    }
+</div>
