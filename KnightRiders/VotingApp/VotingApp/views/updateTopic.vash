@@ -1,0 +1,51 @@
+﻿@html.extend('layout',function(model){
+@html.block("scripts",function(model){
+<script src="/Js/topicsView.js"></script>
+})
+  @html.block("body",function(model){
+
+<div ng-app="topicsView" style="margin-top: 60px;">
+    <div ng-controller="topicsViewController">
+        <div class="panel-group" id="accordion" close-others>
+
+
+            <form ng-submit="update()" method="post" role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-lg-1">Topic Name</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="name" ng-model="topic.name" class="form-control" required placeholder="presentation topic name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-1">Presented by</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="presenter" ng-model="topic.presenter" class="form-control" required placeholder="Paul Thomas" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-1">Date</label>
+                    <div class="col-lg-5">
+                        <input type="text" name="Date" class="form-control" ng-model="topic.Date" required placeholder="01/01/1900" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-1">Description</label>
+                    <div class="col-lg-5">
+                        <textarea cols="30" rows="2" name="Description" ng-model="topic.Description" placeholder="Brief description about the presentation ..." class="form-control" required maxlength="250"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-5">
+                        <input type="submit" value="Update Topic" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+
+})
+  })
