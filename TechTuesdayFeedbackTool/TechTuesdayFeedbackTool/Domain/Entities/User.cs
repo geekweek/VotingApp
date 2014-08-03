@@ -8,6 +8,7 @@ namespace TechTuesdayFeedbackTool.Domain
         public string UserEmail { get; set; }
         public string UserName { get; set; }
         public int RoleID { get; set; }
+        public string Password { get; set; }
         //User roles
         [ForeignKey("RoleID")]
         public UserRolesMaster Role { get; set; }        

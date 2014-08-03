@@ -6,7 +6,7 @@ namespace TechTuesdayFeedbackTool.Repository
     public class DatabaseContext : DbContext
     {
         public DatabaseContext()
-            :base("DefaultConnection")
+            : base("DatabaseContext")
         {
         }
         public DbSet<User> UsersContext { get; set; }
