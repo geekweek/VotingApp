@@ -1,0 +1,10 @@
+﻿@model VotingApp.Models.MongoModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@foreach (var image in Model.ListOfGuid)
+{
+    @Html.ActionLink("Download","Download", new {id = image })
+}

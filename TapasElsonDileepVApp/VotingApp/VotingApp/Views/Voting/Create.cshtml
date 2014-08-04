@@ -1,0 +1,12 @@
+﻿@model VotingApp.Models.NewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Upload", "Voting", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="Create" />
+}
