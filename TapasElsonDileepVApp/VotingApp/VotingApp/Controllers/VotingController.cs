@@ -23,7 +23,7 @@ namespace VotingApp.Controllers
         {
             MongoModel model = new MongoModel();
             model.ListOfGuid = new List<Guid>();
-            List<VoteModels> voteList = dataAccsess.RetrieveAll("elson");
+            List<VoteModels> voteList = dataAccsess.RetrieveAll(User.Identity.Name);
             foreach (var vote in voteList)
             {
                 model.ListOfGuid.Add(vote.Id);
@@ -41,7 +41,7 @@ namespace VotingApp.Controllers
         {
             dataAccsess.Insert(new VoteModels()
             {
-                UserName = "elson",
+                UserName = User.Identity.Name,
                 Name = "elson paul",
                 Rating = 10,
                 Description = "description",
@@ -54,7 +54,7 @@ namespace VotingApp.Controllers
 
         public FileContentResult Download(string id)
         {
-            var vote = dataAccsess.Find(new VoteModels() {UserName = "elson", Id = new Guid(id) });
+            var vote = dataAccsess.Find(new VoteModels() { UserName = User.Identity.Name, Id = new Guid(id) });
             return new FileContentResult(vote.Data, vote.ContentType);
         }
     }
