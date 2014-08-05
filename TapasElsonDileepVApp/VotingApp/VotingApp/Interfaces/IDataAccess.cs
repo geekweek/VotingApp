@@ -10,13 +10,15 @@ namespace VotingApp.Interfaces
     {
         bool Insert(VoteModels vote);
 
-        List<VoteModels> RetrieveAll(string userName);
+        List<VoteModels> Retrieve(string userName);
 
         bool Update(VoteModels vote);
 
         bool Delete(VoteModels vote);
 
         VoteModels Find(VoteModels vote);
+
+        List<VoteModels> RetrieveAll();
 
     }
 }

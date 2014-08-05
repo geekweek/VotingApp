@@ -23,7 +23,7 @@ namespace VotingApp.Controllers
         {
             MongoModel model = new MongoModel();
             model.ListOfGuid = new List<Guid>();
-            List<VoteModels> voteList = dataAccsess.RetrieveAll(User.Identity.Name);
+            List<VoteModels> voteList = dataAccsess.RetrieveAll();
             foreach (var vote in voteList)
             {
                 model.ListOfGuid.Add(vote.Id);

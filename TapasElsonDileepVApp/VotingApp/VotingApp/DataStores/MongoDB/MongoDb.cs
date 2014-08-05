@@ -35,7 +35,7 @@ namespace VotingApp.DataStores.MongoDB
             return true;
         }
 
-        public List<VoteModels> RetrieveAll(string userName)
+        public List<VoteModels> Retrieve(string userName)
         {
             var collection = database.GetCollection<VoteEntity>(userName);
             if (collection == null || collection.Count() <= 0)
@@ -64,7 +64,7 @@ namespace VotingApp.DataStores.MongoDB
                 Description = !string.IsNullOrWhiteSpace(vote.Description) ? vote.Description : voteEntity.Description,
                 FileName = !string.IsNullOrWhiteSpace(vote.FileName) ? vote.FileName : voteEntity.FileName,
                 ImageId = vote.Data != null ? SaveImageInGridFS(vote) : voteEntity.ImageId,
-                ContentType = !string.IsNullOrWhiteSpace(vote.ContentType) != null ? vote.ContentType : voteEntity.ContentType
+                ContentType = !string.IsNullOrWhiteSpace(vote.ContentType)? vote.ContentType : voteEntity.ContentType
             };
             collection.Save(updateVoteEntity);
             return true;
@@ -74,7 +74,9 @@ namespace VotingApp.DataStores.MongoDB
         {
             var collection = database.GetCollection<VoteEntity>(vote.UserName);
             var query = Query<VoteEntity>.EQ(e => e.Id, vote.Id);
+            var voteEntity = collection.FindOne(query);
             collection.Remove(query);
+            database.GridFS.DeleteById(voteEntity.ImageId);
             return true;
         }
 
@@ -84,6 +86,17 @@ namespace VotingApp.DataStores.MongoDB
             var query = Query<VoteEntity>.EQ(e => e.Id, vote.Id);
             var voteEntity = collection.FindOne(query);           
             return MapEntityToModel(voteEntity, vote.UserName);
+        }
+
+        public List<VoteModels> RetrieveAll()
+        {
+            var collectionList = database.GetCollectionNames();
+            List<VoteModels> voteList = new List<VoteModels>();
+            foreach (var name in collectionList)
+            {
+                voteList.AddRange(Retrieve(name));
+            }
+            return voteList;
         }
 
         VoteModels MapEntityToModel(VoteEntity voteEntity, string userName)
