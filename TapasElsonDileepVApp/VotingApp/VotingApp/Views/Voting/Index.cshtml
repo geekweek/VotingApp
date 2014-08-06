@@ -4,7 +4,8 @@
 }
 
 <h2>Index</h2>
-@foreach (var image in Model.ListOfGuid)
+@foreach (var vote in Model.ListOFVote)
 {
-    @Html.ActionLink("Download","Download", new {id = image })
+    @Html.Label(vote.Name)
+    @Html.ActionLink("Download","Download", new {id = vote.Id })
 }

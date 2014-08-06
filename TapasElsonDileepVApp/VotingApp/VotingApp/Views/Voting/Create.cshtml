@@ -1,4 +1,4 @@
-﻿@model VotingApp.Models.CreateModel
+﻿@model VotingApp.Models.VoteModels
 @{
     ViewBag.Title = "Create";
 }
@@ -7,7 +7,13 @@
 
 @using (Html.BeginForm("Upload", "Voting", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <input type="file" name="file" />
-    @Html.TextBoxFor(m=> m.Rating);
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m=>m.Name)
+    @Html.LabelFor(m => m.Rating)
+    @Html.TextBoxFor(m => m.Rating);
+     
+    <br/>
+    <label>Select file</label>                             
+    <input type="file" name="file" /><br />
     <input type="submit" value="Create" />
 }

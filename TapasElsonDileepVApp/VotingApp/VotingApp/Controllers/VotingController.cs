@@ -22,18 +22,13 @@ namespace VotingApp.Controllers
         public ActionResult Index()
         {
             MongoModel model = new MongoModel();
-            model.ListOfGuid = new List<Guid>();
-            List<VoteModels> voteList = dataAccsess.RetrieveAll();
-            foreach (var vote in voteList)
-            {
-                model.ListOfGuid.Add(vote.Id);
-            }
+            model.ListOFVote = dataAccsess.RetrieveAll();
             return View(model);
         }
 
         public ActionResult Create()
         {
-            CreateModel model = new CreateModel();
+            VoteModels model = new VoteModels();
             return View(model);
         }
 

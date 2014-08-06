@@ -8,6 +8,6 @@ namespace VotingApp.Models
 {
     public class MongoModel
     {
-        public List<Guid> ListOfGuid { get; set; }
+        public List<VoteModels> ListOFVote { get; set; }
     }
 }
