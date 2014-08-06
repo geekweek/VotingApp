@@ -33,17 +33,17 @@ namespace VotingApp.Controllers
 
         public ActionResult Create()
         {
-            NewModel model = new NewModel();
+            CreateModel model = new CreateModel();
             return View(model);
         }
 
-        public ActionResult Upload(HttpPostedFileBase file)
+        public ActionResult Upload(CreateModel model, HttpPostedFileBase file)
         {
             dataAccsess.Insert(new VoteModels()
             {
                 UserName = User.Identity.Name,
                 Name = "elson paul",
-                Rating = 10,
+                Rating = model.Rating,
                 Description = "description",
                 FileName = file.FileName,
                 Data = ByteStreamConverter.StreamToByte(file.InputStream),

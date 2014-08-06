@@ -11,19 +11,20 @@ namespace VotingApp.DataStores.MongoDB
 {
     public class MongoDb : IDataAccess
     {
+        private MongoCollection<VoteEntity> collection = null;
         private MongoDatabase database = null;
-        public MongoDb(string connectionString, string databaseName)
+        public MongoDb(string connectionString, string databaseName, string collectionName)
         {
             var client = new MongoClient(connectionString);
             var server = client.GetServer();
             database = server.GetDatabase(databaseName);
-            
+            collection = database.GetCollection<VoteEntity>(collectionName);
         }
         public bool Insert(VoteModels vote)
         {
-            var collection = database.GetCollection<VoteEntity>(vote.UserName);
             VoteEntity voteEntity = new VoteEntity()
             {
+                UserName = vote.UserName,
                 Rating = vote.Rating,
                 Name = vote.Name,
                 Description = vote.Description,
@@ -37,15 +38,11 @@ namespace VotingApp.DataStores.MongoDB
 
         public List<VoteModels> Retrieve(string userName)
         {
-            var collection = database.GetCollection<VoteEntity>(userName);
-            if (collection == null || collection.Count() <= 0)
-            {
-                return null;
-            }
             List<VoteModels> voteList = new List<VoteModels>();
-            foreach (VoteEntity vote in collection.FindAll())
+            var query = Query<VoteEntity>.EQ(e => e.UserName, userName);
+            foreach (VoteEntity vote in collection.Find(query))
             {
-                voteList.Add(MapEntityToModel(vote, userName));
+                voteList.Add(MapEntityToModel(vote));
                 
             }
             return voteList;
@@ -53,12 +50,12 @@ namespace VotingApp.DataStores.MongoDB
 
         public bool Update(VoteModels vote)
         {
-            var collection = database.GetCollection<VoteEntity>(vote.UserName);
             var query = Query<VoteEntity>.EQ(e => e.Id, vote.Id);
             var voteEntity = collection.FindOne(query);
             VoteEntity updateVoteEntity = new VoteEntity()
             {
                 Id = vote.Id,
+                UserName = vote.UserName,
                 Rating = vote.Rating > 0 ? vote.Rating : voteEntity.Rating,
                 Name = !string.IsNullOrWhiteSpace(vote.Name) ? vote.Name : voteEntity.Name,
                 Description = !string.IsNullOrWhiteSpace(vote.Description) ? vote.Description : voteEntity.Description,
@@ -72,7 +69,6 @@ namespace VotingApp.DataStores.MongoDB
 
         public bool Delete(VoteModels vote)
         {
-            var collection = database.GetCollection<VoteEntity>(vote.UserName);
             var query = Query<VoteEntity>.EQ(e => e.Id, vote.Id);
             var voteEntity = collection.FindOne(query);
             collection.Remove(query);
@@ -82,28 +78,27 @@ namespace VotingApp.DataStores.MongoDB
 
         public VoteModels Find(VoteModels vote)
         {
-            var collection = database.GetCollection<VoteEntity>(vote.UserName);
             var query = Query<VoteEntity>.EQ(e => e.Id, vote.Id);
             var voteEntity = collection.FindOne(query);           
-            return MapEntityToModel(voteEntity, vote.UserName);
+            return MapEntityToModel(voteEntity);
         }
 
         public List<VoteModels> RetrieveAll()
         {
-            var collectionList = database.GetCollectionNames();
             List<VoteModels> voteList = new List<VoteModels>();
-            foreach (var name in collectionList)
+            foreach (VoteEntity vote in collection.FindAll())
             {
-                voteList.AddRange(Retrieve(name));
+                voteList.Add(MapEntityToModel(vote));
+
             }
             return voteList;
         }
 
-        VoteModels MapEntityToModel(VoteEntity voteEntity, string userName)
+        VoteModels MapEntityToModel(VoteEntity voteEntity)
         {
             VoteModels voteModel = new VoteModels()
             {
-                UserName = userName,
+                UserName = voteEntity.UserName,
                 Data = GetImageFromGridFS(voteEntity.ImageId),
                 Rating = voteEntity.Rating,
                 Id = voteEntity.Id,

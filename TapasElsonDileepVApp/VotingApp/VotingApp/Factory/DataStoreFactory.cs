@@ -11,7 +11,7 @@ namespace VotingApp.Factory
     {
         public static IDataAccess GetDataStore()
         {
-            return new MongoDb(ConfigurationManager.ConnectionStrings["MongoConnection"].ConnectionString.ToString(), "VotingApp");
+            return new MongoDb(ConfigurationManager.ConnectionStrings["MongoConnection"].ConnectionString.ToString(), "VotingApp", "Votes");
         }
     }
 }

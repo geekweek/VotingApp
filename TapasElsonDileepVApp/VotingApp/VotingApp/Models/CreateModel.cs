@@ -5,7 +5,7 @@ using System.Web;
 
 namespace VotingApp.Models
 {
-    public class NewModel
+    public class CreateModel
     {
         public int Rating { get; set; }
     }
