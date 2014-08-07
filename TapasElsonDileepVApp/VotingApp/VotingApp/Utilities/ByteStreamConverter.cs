@@ -10,6 +10,8 @@ namespace VotingApp.Utilities
     {
         public static byte[] StreamToByte(Stream stream)
         {
+            if (stream == null)
+                return null;
             MemoryStream target = new MemoryStream();
             stream.CopyTo(target);
             byte[] data = target.ToArray();

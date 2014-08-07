@@ -11,21 +11,22 @@
     <body>
         <header>
             <div class="content-wrapper">
-                <div class="float-left">
+               @* <div class="float-left">
                     <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
+                </div>*@
+                <div class="float-left">
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Voting")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("New", "Create", "Voting")</li>
                         </ul>
                     </nav>
                 </div>
+                <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
             </div>
         </header>
         <div id="body">

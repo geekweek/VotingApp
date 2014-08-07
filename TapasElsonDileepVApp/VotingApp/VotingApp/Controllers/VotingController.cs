@@ -11,6 +11,7 @@ using VotingApp.Utilities;
 
 namespace VotingApp.Controllers
 {
+    [Authorize]
     public class VotingController : Controller
     {
         IDataAccess dataAccsess = null;
@@ -32,18 +33,22 @@ namespace VotingApp.Controllers
             return View(model);
         }
 
-        public ActionResult Upload(CreateModel model, HttpPostedFileBase file)
+        public ActionResult Edit(string id)
         {
-            dataAccsess.Insert(new VoteModels()
-            {
-                UserName = User.Identity.Name,
-                Name = "elson paul",
-                Rating = model.Rating,
-                Description = "description",
-                FileName = file.FileName,
-                Data = ByteStreamConverter.StreamToByte(file.InputStream),
-                ContentType = file.ContentType
-            });
+            VoteModels model = dataAccsess.Find(new VoteModels() { UserName = User.Identity.Name, Id = new Guid(id) });
+            return View("Edit",model);
+        }
+
+        public ActionResult Update(VoteModels model, HttpPostedFileBase file)
+        {
+            var vote = MapVoteModel(model, file);
+            vote.Id = model.Id;
+            dataAccsess.Update(vote);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Upload(VoteModels model, HttpPostedFileBase file)
+        {
+            dataAccsess.Insert(MapVoteModel(model,file));
             return RedirectToAction("Index");
         }
 
@@ -51,6 +56,20 @@ namespace VotingApp.Controllers
         {
             var vote = dataAccsess.Find(new VoteModels() { UserName = User.Identity.Name, Id = new Guid(id) });
             return new FileContentResult(vote.Data, vote.ContentType);
+        }
+
+        VoteModels MapVoteModel(VoteModels model, HttpPostedFileBase file)
+        {
+            return new VoteModels()
+            {
+                UserName = User.Identity.Name,
+                Name = model.Name,
+                Rating = model.Rating,
+                Description = model.Description,
+                FileName = file != null ? file.FileName : null,
+                Data = file != null ? ByteStreamConverter.StreamToByte(file.InputStream): null,
+                ContentType = file != null ? file.ContentType : null
+            };
         }
     }
 }

@@ -7,10 +7,7 @@
 
 @using (Html.BeginForm("Upload", "Voting", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.LabelFor(m => m.Name)
-    @Html.TextBoxFor(m=>m.Name)
-    @Html.LabelFor(m => m.Rating)
-    @Html.TextBoxFor(m => m.Rating);
+  @Html.Partial("_VoteDetails", Model)
      
     <br/>
     <label>Select file</label>                             
