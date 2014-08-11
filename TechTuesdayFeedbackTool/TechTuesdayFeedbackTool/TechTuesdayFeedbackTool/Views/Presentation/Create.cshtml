@@ -1,8 +1,21 @@
-﻿@model TechTuesdayFeedbackTool.Domain.PresentationDetails
+﻿@model TechTuesdayFeedbackTool.Models.CreatePresentaionViewModel
 @{
     ViewBag.Title = "Create a new Presentation";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> users = new List<SelectListItem>();
+    foreach (var user in Model.ListOfUsers)
+	{
+        var selectUser = new SelectListItem();
+        selectUser.Text = user.UserName;
+        selectUser.Value = user.ID.ToString();
+        users.Add(selectUser);
+	}
 }
+<style type="text/css">
+    .dateselector{
+
+    }
+</style>
 
 <h2>@ViewBag.Title</h2>
 <div class="row">
@@ -13,17 +26,30 @@
                 <hr />
                 @Html.ValidationSummary(true)
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.Presentation.Name, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Presentation.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Presentation.Name)
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.Presentation.Description, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Description)
+                        @Html.TextAreaFor(m => m.Presentation.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Presentation.Description)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Presentation.Date, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Presentation.Date, new { @class = "form-control dateselector" })
+                        @Html.ValidationMessageFor(m => m.Presentation.Date)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Select </label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.SelectedUserId, users, new { @class = "form-control"})
                     </div>
                 </div>
                 <div class="form-group">
@@ -35,3 +61,11 @@
         </section>
     </div>
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+    (function () {
+        jQuery(".dateselector").datepicker();
+    })();
+    </script>
+}
