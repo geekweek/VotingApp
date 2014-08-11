@@ -1,27 +1,31 @@
-﻿@model List<TechTuesdayFeedbackTool.Domain.PresentationDetails>
+﻿@model TechTuesdayFeedbackTool.Models.PresentationIndexViewModel
 @{
     ViewBag.Title = "Presentation List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
-    <div class="col-md-offset-4 col-md-3">
-        <div class="alert-success">
-            <span>Presentaion created successfully</span><span class="glyphicon glyphicon-remove right" ></span>
+@if (Model.IsReturnedFromCreate)
+{
+    <div class="row">
+        <div class="col-md-offset-4 col-md-3">
+            <div class="alert-success">
+                <span>Presentaion created successfully</span><span class="glyphicon glyphicon-remove right"></span>
+            </div>
         </div>
     </div>
-</div>
+}
+
 <h2>@ViewBag.Title</h2>
 <div class="row">
-    @for (int i = 0; i < Model.Count; i++)
+    @for (int i = 0; i < Model.PresentationList.Count; i++)
     {
         <div class="col-md-4">
-            @Html.Label(Model[i].Name)
+            @Html.Label(Model.PresentationList[i].Name)
         </div>
         <div class="col-md-4">
-            @Html.Label(Model[i].Description)
+            @Html.Label(Model.PresentationList[i].Description)
         </div>
         <div class="col-md-4">
-            @Html.Label(Model[i].Date.ToShortDateString())
+            @Html.Label(Model.PresentationList[i].Date.ToShortDateString())
         </div>
     }
 </div>

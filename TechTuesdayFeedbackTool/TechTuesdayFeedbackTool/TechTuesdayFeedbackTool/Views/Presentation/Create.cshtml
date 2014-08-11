@@ -42,7 +42,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Presentation.Date, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Presentation.Date, new { @class = "form-control dateselector" })
+                        @Html.TextBoxFor(m => m.Presentation.Date, "0:dd/MM/yyyy", new { @class = "form-control dateselector" })
                         @Html.ValidationMessageFor(m => m.Presentation.Date)
                     </div>
                 </div>
@@ -65,7 +65,9 @@
 @section scripts{
     <script type="text/javascript">
     (function () {
-        jQuery(".dateselector").datepicker();
+        jQuery(".dateselector").datepicker({
+            format : 'dd/mm/yyyy'
+        });
     })();
     </script>
 }

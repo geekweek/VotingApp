@@ -19,7 +19,13 @@ namespace TechTuesdayFeedbackTool.Controllers
         public ActionResult Index()
         {
             presentationsList = new Repository<PresentationDetails>();
-            return View(presentationsList.Query().ToList());
+            PresentationIndexViewModel vm = new PresentationIndexViewModel();
+            vm.PresentationList = presentationsList.Query().ToList();
+            if (TempData["CreationSuccess"] != null && TempData["CreationSuccess"] == "true")
+            {
+                vm.IsReturnedFromCreate = true;
+            }
+            return View(vm);
         }
 
         public ActionResult Create()
@@ -35,14 +41,18 @@ namespace TechTuesdayFeedbackTool.Controllers
         public ActionResult Create(CreatePresentaionViewModel viewModel)
         {
             presentationsList = new Repository<PresentationDetails>();
-            viewModel.Presentation.Date = DateTime.Now;
+            if (viewModel.Presentation.Date == null || viewModel.Presentation.Date.Equals(DateTime.MinValue))
+            {
+                viewModel.Presentation.Date = DateTime.Now;
+            }
             if (presentationsList.Save(viewModel.Presentation))
             {
                 int presentationId = viewModel.Presentation.ID;
                 userAssociationsList = new Repository<UserAssociationWithPresentation>();
                 if(userAssociationsList.Save(new UserAssociationWithPresentation() { PresentationID = presentationId, UserID = Convert.ToInt32(viewModel.SelectedUserId) }))
                 {
-                    return RedirectToAction("Index", new { creationSuccess = "true" });
+                    TempData["CreationSuccess"] = "true";
+                    return RedirectToAction("Index");
                 }
                 else
                 {
