@@ -6,7 +6,7 @@
 <h2>Edit</h2>
 @using (Html.BeginForm("Update", "Voting", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-  @Html.Partial("_VoteDetails", Model)
+     @Html.Partial("_VoteDetails", Model)
      @Html.HiddenFor(m => m.Id)
     <br/>
     <label>Select file</label>                             

@@ -7,6 +7,8 @@ namespace VotingApp.Models
 {
     public class VoteModels
     {
+        public bool IsEditable { get; set; }
+
         public Guid Id { get; set; }
 
         public string UserName { get; set; }

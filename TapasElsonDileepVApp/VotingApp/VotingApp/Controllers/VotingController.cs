@@ -27,16 +27,32 @@ namespace VotingApp.Controllers
             return View(model);
         }
 
+        public ActionResult MyPresentations()
+        {
+            MongoModel model = new MongoModel();
+            model.ListOFVote = dataAccsess.Retrieve(User.Identity.Name);
+            return View("Index",model);
+        }
+
         public ActionResult Create()
         {
             VoteModels model = new VoteModels();
+            model.IsEditable = true;
             return View(model);
         }
 
         public ActionResult Edit(string id)
         {
             VoteModels model = dataAccsess.Find(new VoteModels() { UserName = User.Identity.Name, Id = new Guid(id) });
+            model.IsEditable = true;
             return View("Edit",model);
+        }
+
+        public ActionResult View(string id)
+        {
+            VoteModels model = dataAccsess.Find(new VoteModels() { UserName = User.Identity.Name, Id = new Guid(id) });
+            model.IsEditable = false;
+            return View("View", model);
         }
 
         public ActionResult Update(VoteModels model, HttpPostedFileBase file)
@@ -46,9 +62,16 @@ namespace VotingApp.Controllers
             dataAccsess.Update(vote);
             return RedirectToAction("Index");
         }
+
         public ActionResult Upload(VoteModels model, HttpPostedFileBase file)
         {
             dataAccsess.Insert(MapVoteModel(model,file));
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(string id)
+        {
+            dataAccsess.Delete(new VoteModels() { UserName = User.Identity.Name, Id = new Guid(id) });
             return RedirectToAction("Index");
         }
 
