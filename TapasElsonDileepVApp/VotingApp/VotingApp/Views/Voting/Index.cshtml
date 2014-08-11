@@ -5,7 +5,7 @@
 
 <h2>Index</h2>
 <table>
-    <thead><tr><th>Name</th><th>Rating</th><th>Download</th></tr></thead>
+    <thead><tr><th>Name</th><th>Rating</th><th>Download</th><th>Delete</th></tr></thead>
 @foreach (var vote in Model.ListOFVote)
 {
     
@@ -13,6 +13,14 @@
         <td> @Html.ActionLink(vote.Name, "Edit", new { id = vote.Id })</td>
         <td> @Html.Label(vote.Rating.ToString())</td>
         <td> @Html.ActionLink("Download", "Download", new { id = vote.Id })</td>
+        @if (User.Identity.Name.Equals(vote.UserName))
+        {
+            <td> @Html.ActionLink("Delete", "Delete", new { id = vote.Id })</td>
+        }
+        else
+        {
+            <td>NA</td>
+        }
     
     </tr>
 }
