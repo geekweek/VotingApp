@@ -1,0 +1,852 @@
+﻿@using Newtonsoft.Json
+@model Accolite.GeekWeek.Voting.Models.VotingModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Gulaab Gang</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Content/css/agency.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"
+        type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet'
+        type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+        rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet'
+        type='text/css' />
+    <!--Datepicker CSS-->
+    <link href="~/Content/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- star rating CSS-->
+    <link href="~/Content/bootstrap-star-rating/css/star-rating.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-star-rating/css/star-rating.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../Content/js/jquery-1.11.0.js" type="text/javascript"></script>
+    <script src="../../Content/js/angular.min.js" type="text/javascript"></script>
+    <script src="../../Content/js/Controller/Landing.js" type="text/javascript"></script>
+
+</head>
+<body id="page-top" class="index" ng-controller="Landing">
+    @{var viewmodel = JsonConvert.SerializeObject(@Model);}
+    @Html.Hidden("Viewmodel", viewmodel)
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Gulaab Gang</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">I-Centre</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">View More</a>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Model.UserData.Name}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/Home/Logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">willkommen "Geek Week"</div>
+                <div class="intro-heading">It's Nice To Meet You</div>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Interactive Centre</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="~/Content/img/view.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Features</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <a href="#viewPresentationsModal" class="portfolio-link" data-toggle="modal">View Presentations</a>
+                                    <p class="text-muted">View list,Rate a presentation,edit your presentation details and more...</p>
+                                    <br />
+                                    <a href="#addPresentationsModal" class="portfolio-link" data-toggle="modal">Add your New Presentaion</a>
+                                    <p class="text-muted">Sucessfully gave a Session!!!! Add the details</p>
+                                    <br />
+                                    <a href="#upcomingSessions" class="portfolio-link" data-toggle="modal">Upcoming Sessions</a>
+                                    <p class="text-muted">Whats coming up next?</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="~/Content/img/Addons-icon.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Add-ons</h4>
+                                </div>
+                               <div class="timeline-body">
+                                    <a href="#suggestTopicModal" class="portfolio-link" data-toggle="modal">Suggest a Topic</a>
+                                    <p class="text-muted">Quest for more??? Enter details on the topic</p>
+                                    <br />
+                                    <a href="#BookURTopic" class="portfolio-link" data-toggle="modal">Invite for a Session</a>
+                                    <p class="text-muted">Share your knowledge and enlighten others!!!!</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="text-muted">VK presents</p>
+                    <h2 class="section-heading">Gulaab Gang</h2>
+                    <h3 class="section-subheading text-muted">Women empowerment</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="~/Content/img/team/1.jpg" class="img-responsive img-circle" alt="" />
+                        <h4>Manali</h4>
+                        <p class="text-muted">Lead Designer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="~/Content/img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Deepika</h4>
+                        <p class="text-muted">Lead Marketer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="~/Content/img/team/3.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Ramya G</h4>
+                        <p class="text-muted">Lead Developer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- View More -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">What more!!!</h2>
+                </div>
+            </div> 
+            
+             <!-- ramya -->           
+ <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="~/Content/img/home-girl.png" alt="">
+      <div class="carousel-caption">
+        <h2 class="section-heading">Modern and Creative</h2>
+      </div>
+    </div>
+    <div class="item">
+      <img src="~/Content/img/home-girl.png" alt="">
+      <div class="carousel-caption">
+        <h2 class="section-heading">Beautiful and clean code</h2>
+      </div>
+    </div>
+    <div class="item">
+           <img src="~/Content/img/home-girl.png" alt="">
+      <div class="carousel-caption">
+        <h2 class="section-heading">Fully Responsive</h2>
+        <p></p>
+    </div>
+   </div>
+    ...
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+
+<!--ramya-->
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Portfolio Modals -->
+    <!-- Use the modals below to showcase details about your portfolio projects! -->
+    <!-- Portfolio Modal 1 -->
+    <div class="portfolio-modal modal fade" id="viewPresentationsModal" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h3>
+                                View Presentations</h3>
+                            <p class="item-intro text-muted">
+                                You can select dates and view presentations given in that period of time, sorted
+                                according to the ratings.</p>
+                            <!-- datepicker-->
+                            <div class="form-group col-md-6">
+                                From</div>
+                            <div class="form-group col-md-6">
+                                <div class='input-group date' id='StartDatedatetimepicker'>
+                                    <input type='text' class="form-control" readonly/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    <input type='text' class="hide" id="PresentationStartDateValue"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                To</div>
+                            <div class="form-group col-md-6">
+                                <div class='input-group date' id='EndDatedatetimepicker'>
+                                    <input type='text' class="form-control" readonly/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    <input type='text' class="hide" id="PresentationEndDateValue"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" ng-click="displayViewPresentationResults();">
+                                    Search</button>
+                            </div>
+                            <div id="divSearchResults" class="hide">
+                                <h4>
+                                    Search Results</h4>
+                                <div>
+                                    You can <a href="#editPresentationsModal" class="portfolio-link" data-toggle="modal">
+                                        Edit</a>, <a href="#ratePresentationsModal" class="portfolio-link" data-toggle="modal" ng-click="UpdateRatingDetails()">
+                                            Rate</a> and <a href="#" class="portfolio-link" data-toggle="modal">Download</a>
+                                    Presentations</div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    select
+                                                </th>
+                                                <th>
+                                                    Title
+                                                </th>
+                                                <th>
+                                                    Presenter
+                                                </th>
+                                                <th>
+                                                    Average rating
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="Item in Model.ViewPresentationsDetails.SearchedPresentationDetails">
+                                            <tr>
+                                                <td><input type="radio" name="optionsRadios" id="presentation_{{Item._id}}" value="{{Item._id}}"  ng-click="SetPresentationID(Item)"/></td>
+                                                <td>{{Item.Title}}</td>
+                                                <td>{{Item.Presenter}}</td>
+                                                <td>{{Item.AverageRating}}</td>
+                                            </tr>                                         
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- datepicker -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Modal 2 -->
+    <div class="portfolio-modal modal fade" id="addPresentationsModal" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h3>
+                                Add New Presentation</h3>
+                            <p class="item-intro text-muted">
+                                Upload your PPTs and details of your Presentations</p>
+                            <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="AddPresentationDatePicker" class="col-sm-2 control-label">
+                                    Date</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group date' id='AddPresentationDatePicker'>
+                                        <input type='text' class="form-control" placeholder="Date of Presentation" />
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input type='text' class="hide" id="AddPresentationDateValue"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label">
+                                    Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="title" placeholder="Topic of Presentation" ng-model="Model.NewPresentation.Title"/></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="presentedBy" class="col-sm-2 control-label">
+                                    Presented By</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="presentedBy" placeholder="Session Conducted By" ng-model="Model.NewPresentation.Presenter" readonly/></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile" class="col-sm-2 control-label">
+                                    Attachments</label>
+                                <div class="col-sm-10">
+                                    <input type="file" id="exampleInputFile"></div>
+                            </div>
+                            <a class="page-scroll btn btn-xs" style="margin-top: 40px;" ng-click="SubmitPresentation()">Submit</a>
+                            <a href="/Features/Login" class="page-scroll btn btn-xs" style="margin-top: 40px;">Send
+                                Mail</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Modal 3 -->
+    <div class="portfolio-modal modal fade" id="ratePresentationsModal" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h3>
+                                Rate and Comment the Presentation</h3>
+                            <p class="item-intro text-muted">
+                                Rate & comment and help your peer improve</p>
+                            <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="datetimepicker1" class="col-sm-2 control-label">
+                                    Date</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group date' id='datetimepicker1' disable>
+                                        <input type='text' class="form-control" placeholder="Date of Presentation" readonly 
+                                        ng-model="Model.SelectedPresentation.PresentationDate"/>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label">
+                                    Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="title" placeholder="Topic of Presentation"
+                                        readonly ng-model="Model.SelectedPresentation.Title"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="presentedBy" class="col-sm-2 control-label">
+                                    Presented By</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="presentedBy" placeholder="Session Conducted By"
+                                        readonly ng-model="Model.SelectedPresentation.Presenter" /></div>
+                            </div>
+                            <div class="form-group  hide">
+                                <label for="attachmentsAdded" class="col-sm-2 control-label">
+                                    Presented By</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="attachmentsAdded" placeholder="File Names or file links"
+                                        readonly /></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="averageRating" class="col-sm-2 control-label">
+                                    Average Rating</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="averageRatingtxt" placeholder="Avg Rating is"
+                                        readonly ng-model="Model.SelectedPresentation.AverageRating" /></div>
+                                  @*  <input id="averageRating" type="number" class="rating" min="0" max="5"
+                                        step="0.5" data-size="xs" rating-value="Model.SelectedPresentation.AverageRating" readonly/>*@</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ratePresent" class="col-sm-2 control-label">
+                                    Rate</label>
+                                <div class="col-sm-10">
+                                    <input id="ratePresent" value="0" type="number" class="rating" min="0" max="5" step="0.5"
+                                        data-size="xs" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment" class="col-sm-2 control-label">
+                                    Comments</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" id="comment"
+                                    ng-model="Model.RatingData.Comments"></textarea></div>
+                            </div>
+                            <a class="page-scroll btn btn-xs" style="margin-top: 40px;" ng-Click="SubmitCurrentRating()">Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Presentations Modal-->
+    <div class="portfolio-modal modal fade" id="editPresentationsModal" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h3>
+                                Edit Your Presentation</h3>
+                            <p class="item-intro text-muted">
+                                Add details of the Presentations you gave</p>
+                            <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="datetimepicker2" class="col-sm-2 control-label">
+                                    Date</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group date' id='datetimepicker2' disable>
+                                        <input type='text' class="form-control" placeholder="Date of Presentation" readonly />
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="titleEdit" class="col-sm-2 control-label">
+                                    Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="titleEdit" placeholder="Topic of Presentation"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="attachmentsToUpload" class="col-sm-2 control-label">
+                                    Attachments</label>
+                                <div class="col-sm-10">
+                                    <input type="file" id="attachmentsToUpload"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="averageRatingEdit" class="col-sm-2 control-label">
+                                    Average Rating</label>
+                                <div class="col-sm-10">
+                                    <input id="averageRatingEdit" value="0" type="number" class="rating" min="0" max="5"
+                                        step="0.5" data-size="xs"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="commentEdit" class="col-sm-2 control-label">
+                                    Comments</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" id="commentEdit"></textarea></div>
+                            </div>
+                            <a href="/Features/Login" class="page-scroll btn btn-xs" style="margin-top: 40px;">Submit</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Modal 4 -->
+    <div class="portfolio-modal modal fade" id="suggestTopicModal" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>
+                                Suggest A Topic</h2>
+                            <div class="row">
+                                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">
+                                    <div class="clearfix">
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <textarea class="form-control" rows="6" placeholder="Topic on which you want a Session"></textarea><br />
+                                    <br />
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit</button><br />
+                                    <br />
+                                </div>
+                                <div class="col-lg-5 col-sm-pull-6 col-sm-6">
+                                    <img class="img-responsive" src="~/Content/img/idea.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Modal 5 -->
+    <div class="portfolio-modal modal fade" id="upcomingSessions" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>
+                                Upcomings Tech Tuesdays</h2>
+                            <p class="item-intro text-muted">
+                                These are the upcoming ones. Come prepared with question!!!!!!!!</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr bgcolor="#66FFFF">
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Presenter
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Pre-requisites?
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                AngularJS
+                                            </td>
+                                            <td>
+                                                ABC
+                                            </td>
+                                            <td>
+                                                12/11/2015
+                                            </td>
+                                            <td>
+                                                everything except angular
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                q-talkak
+                                            </td>
+                                            <td>
+                                                ABC
+                                            </td>
+                                            <td>
+                                                12/11/2015
+                                            </td>
+                                            <td>
+                                                come blank
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Modal 6 -->
+    <div class="portfolio-modal modal fade" id="BookURTopic" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>
+                                Book Your Tuesday</h2>
+                            <p class="item-intro text-muted">
+                                i know this topic well.Let me give gyan!!!!</p>
+                            <img class="img-responsive img-centered" src="~/Content/img/suggesting.jpg" alt="">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr bgcolor="#66FFFF">
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th class="col-sm-3">
+                                                Date to Present
+                                            </th>
+                                            <th class="col-sm-5">
+                                                Pre-requisites?
+                                            </th>
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                AngularJS
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker6'>
+                                                        <input type='text' class="form-control col-sm-" placeholder="Book Date" />
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control col-sm-5" id="preRequisite" placeholder="come blank">
+                                            </td>
+                                            <td>
+                                                <a href="" class="portfolio-link" data-toggle="modal">Book</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                q-talkak
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker6'>
+                                                        <input type='text' class="form-control col-sm-3" placeholder="Book Date" />
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control col-sm-5" id="preRequisite" placeholder="homework on">
+                                            </td>
+                                            <td>
+                                                <a href="" class="portfolio-link" data-toggle="modal">Book</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery Version 1.11.0 -->
+    <script type="text/javascript" src="~/Content/js/jquery-1.11.0.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/classie.js"></script>
+    <script type="text/javascript" src="~/Content/js/cbpAnimatedHeader.js"></script>
+    <!-- Contact Form JavaScript -->
+    <script type="text/javascript" src="~/Content/js/jqBootstrapValidation.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src="~/Content/js/agency.js"></script>
+    <!--datepicker JavaScript -->
+    <script type="text/javascript" src="~/Scripts/moment.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap-star-rating/js/star-rating.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $('#StartDatedatetimepicker').datetimepicker({
+                pickTime: false,
+                altField: '#PresentationStartDateValue'
+            });
+            $('#EndDatedatetimepicker').datetimepicker(
+            {
+                pickTime: false,
+                altField: '#PresentationEndDateValue'
+            });
+            $("#StartDatedatetimepicker").on("dp.change", function (e) {
+                $('#EndDatedatetimepicker').data("DateTimePicker").setMinDate(e.date);
+            });
+            $("#EndDatedatetimepicker").on("dp.change", function (e) {
+                $('#StartDatedatetimepicker').data("DateTimePicker").setMaxDate(e.date);
+            });
+        });
+
+        $(function () {
+            $('#AddPresentationDatePicker').datetimepicker({
+                pickTime: false,
+                altField: '#AddPresentationDateValue'
+            });
+            
+            $('#datetimepicker1').datetimepicker({
+                pickTime: false
+            });
+        });
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+                pickTime: false
+            });
+        });
+    </script>
+</body>
+</html>
