@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<script src="bower_components/angular/angular.min.js"></script>
+			<script src="controllers.js"></script>
+	</head>
+	<body ng-app="Football">
+		<h1>MEAN Football</h1>
+		<hr/>
+		<h4>Add your team</h4>
+		<div ng-controller="TeamController">
+	     	<input type="text" ng-model="team" placeholder="Team"/><br/>
+	     	<input type="text" ng-model="captain" placeholder="Captain"><br/>
+		    <button ng-click="add()">Add</button>
+		    <h5>{{output}}</h5>
+		</div>
+	</body>
+</html>

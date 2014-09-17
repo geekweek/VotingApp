@@ -1,0 +1,21 @@
+﻿@model VotingApp.Models.VoteModels
+@{
+    if (Model.IsEditable)
+    {
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+        @Html.LabelFor(m => m.Rating)
+        @Html.TextBoxFor(m => m.Rating)
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description)
+    }
+    else
+    {
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { disabled = "disabled" })
+        @Html.LabelFor(m => m.Rating)
+        @Html.TextBoxFor(m => m.Rating, new { disabled = "disabled" })
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { disabled = "disabled" })
+    }
+}
